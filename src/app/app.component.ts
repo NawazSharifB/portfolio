@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.mediaSub = this.mediaObserver.asObservable().subscribe( (change: MediaChange[]) => {
-      console.log(change[0].mqAlias);
+      // console.log(change[0].mqAlias);
     });
 
     this.dataService.getAllData()
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.dataService.info.next(data);
         this.loading = false;
       }, error => {

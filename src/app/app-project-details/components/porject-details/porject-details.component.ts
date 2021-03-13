@@ -77,7 +77,7 @@ export class PorjectDetailsComponent implements OnInit {
       const info = data[1];
       const id = param.get('id');
       if (id) {
-        console.log(id);
+        // console.log(id);
         const project = info.filter(p => p.uid === id);
         if (project.length) {
           this.project = project[0];
