@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { ServerErrorComponent } from './app-common-general/components/server-error/server-error.component';
 import { NotFoundComponent } from './app-common-general/components/not-found/not-found.component';
@@ -47,7 +47,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(
       routes, {
-      scrollPositionRestoration: 'enabled'
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]
