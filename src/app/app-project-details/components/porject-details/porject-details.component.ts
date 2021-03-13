@@ -30,14 +30,14 @@ export class PorjectDetailsComponent implements OnInit {
       switchMap(value => {
         const projects = value[1];
         if (projects.length) {
-          console.log('project length already exists');
+          // console.log('project length already exists');
           this.notificationService.showLoader.next(false);
           return combineLatest([
             this.route.paramMap,
             this.dataService.info
           ]);
         } else {
-          console.log('no project length');
+          // console.log('no project length');
           const uid = value[0].get('id');
           this.notificationService.showLoader.next(true);
           return combineLatest([
@@ -58,7 +58,7 @@ export class PorjectDetailsComponent implements OnInit {
         const project = info.filter(p => p.uid === id);
         if (project.length) {
           this.project = project[0];
-          console.log(this.project);
+          // console.log(this.project);
         } else if (info.length) {
           // console.log('project doesnt exist', project);
           this.router.navigate(['/not-found']);
@@ -67,8 +67,9 @@ export class PorjectDetailsComponent implements OnInit {
         this.router.navigate(['/not-found']);
       }
     }, error => {
-      console.log('from error');
-      console.log(error);
+      // console.log('from error');
+      // console.log(error);
+      this.router.navigate(['/server-error'])
     });
 
     

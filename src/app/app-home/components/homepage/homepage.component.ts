@@ -44,12 +44,12 @@ export class HomepageComponent implements OnInit {
     this.dataService.info.pipe(
       switchMap(data => {
         if (data.length) {
-          console.log('project is already in subject');
+          // console.log('project is already in subject');
           this.dataExistsInSubject = true;
           this.notificationService.showLoader.next(false);
           return of(data);
         } else {
-          console.log('no project in subject');
+          // console.log('no project in subject');
           this.notificationService.showLoader.next(true);
           this.dataExistsInSubject = false;
           return this.dataService.getAllData();

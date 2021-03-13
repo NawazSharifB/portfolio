@@ -36,10 +36,10 @@ export class PortfolioComponent implements OnInit {
         if (data.length) {
           this.dataExistsInSubject = true;
           this.notificationService.showLoader.next(false);
-          console.log('project is already in subject');
+          // console.log('project is already in subject');
           return of(data);
         } else {
-          console.log('no project in subject');
+          // console.log('no project in subject');
           this.notificationService.showLoader.next(true);
           this.dataExistsInSubject = false;
           return this.dataService.getAllData();
