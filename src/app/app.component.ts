@@ -1,3 +1,4 @@
+import { NotificationService } from './app-common-general/services/notification.service';
 import { Router } from '@angular/router';
 import { DataService } from './app-common-shared/services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,25 +18,34 @@ export class AppComponent implements OnInit {
   constructor(
     private mediaObserver: MediaObserver,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
+    // this.loading = true;
     this.mediaSub = this.mediaObserver.asObservable().subscribe( (change: MediaChange[]) => {
-      // console.log(change[0].mqAlias);
+    console.log(change[0].mqAlias);
+
+    this.notificationService.showLoader
+      .subscribe(data => {
+        setTimeout(() => {
+          this.loading = data;
+        });
+      });
+
     });
 
-    this.dataService.getAllData()
-      .subscribe(data => {
-        // console.log(data);
-        this.dataService.info.next(data);
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-        alert('Something Went Wrong');
-        this.router.navigate(['/server-error']);
-      });
+    // this.dataService.getAllData()
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     this.dataService.info.next(data);
+    //     this.loading = false;
+    //   }, error => {
+    //     this.loading = false;
+    //     alert('Something Went Wrong');
+    //     this.router.navigate(['/server-error']);
+    //   });
   }
 
 

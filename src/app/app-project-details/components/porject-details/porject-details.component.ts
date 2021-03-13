@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../app-common-general/services/notification.service';
 import { InfoModel } from './../../../app-common-shared/models/info.model';
 import { DataService } from './../../../app-common-shared/services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,39 +18,72 @@ export class PorjectDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private notificationService: NotificationService
   ) { }
+
+  ngOnInit(): void {
+    combineLatest([
+      this.route.paramMap,
+      this.dataService.info
+    ]).pipe(
+      switchMap(value => {
+        const projects = value[1];
+        if (projects.length) {
+          console.log('project length already exists');
+          this.notificationService.showLoader.next(false);
+          return combineLatest([
+            this.route.paramMap,
+            this.dataService.info
+          ]);
+        } else {
+          console.log('no project length');
+          const uid = value[0].get('id');
+          this.notificationService.showLoader.next(true);
+          return combineLatest([
+            this.route.paramMap,
+            this.dataService.getSingleProject(uid)
+          ]);
+        }
+      }),
+      // take(1),
+    ).subscribe(data => {
+      const param = data[0];
+      const info = data[1];
+      const id = param.get('id');
+      this.notificationService.showLoader.next(false);
+      if (id) {
+        // console.log(id);
+        // console.log('info', info);
+        const project = info.filter(p => p.uid === id);
+        if (project.length) {
+          this.project = project[0];
+          console.log(this.project);
+        } else if (info.length) {
+          // console.log('project doesnt exist', project);
+          this.router.navigate(['/not-found']);
+        }
+      } else {
+        this.router.navigate(['/not-found']);
+      }
+    }, error => {
+      console.log('from error');
+      console.log(error);
+    });
+
+    
+  }
 
   // ngOnInit(): void {
   //   combineLatest([
   //     this.route.paramMap,
   //     this.dataService.info
-  //   ]).pipe(
-  //     switchMap(value => {
-  //       const projects = value[1];
-  //       if (projects.length) {
-  //         console.log('project length already exists');
-  //         return combineLatest([
-  //           this.route.paramMap,
-  //           this.dataService.info
-  //         ]);
-  //       } else {
-  //         console.log('no project length');
-  //         const uid = value[0].get('id');
-  //         return combineLatest([
-  //           this.route.paramMap,
-  //           this.dataService.getSingleProject(uid)
-  //         ]);
-  //       }
-  //     }),
-  //     take(1),
-  //   ).subscribe(data => {
+  //   ]).subscribe(data => {
   //     const param = data[0];
   //     const info = data[1];
   //     const id = param.get('id');
   //     if (id) {
-  //       // console.log(id);
-  //       console.log('info', info);
+  //       console.log(id);
   //       const project = info.filter(p => p.uid === id);
   //       if (project.length) {
   //         this.project = project[0];
@@ -58,38 +92,10 @@ export class PorjectDetailsComponent implements OnInit {
   //         this.router.navigate(['/not-found']);
   //       }
   //     } else {
-  //       // this.router.navigate(['/not-found']);
+  //       this.router.navigate(['/not-found']);
   //     }
-  //   }, error => {
-  //     console.log('from error');
-  //     console.log(error);
   //   });
-
-    
   // }
-
-  ngOnInit(): void {
-    combineLatest([
-      this.route.paramMap,
-      this.dataService.info
-    ]).subscribe(data => {
-      const param = data[0];
-      const info = data[1];
-      const id = param.get('id');
-      if (id) {
-        // console.log(id);
-        const project = info.filter(p => p.uid === id);
-        if (project.length) {
-          this.project = project[0];
-        } else if (info.length) {
-          // console.log('project doesnt exist', project);
-          this.router.navigate(['/not-found']);
-        }
-      } else {
-        this.router.navigate(['/not-found']);
-      }
-    });
-  }
 
 
   goToLink(url: string): void {

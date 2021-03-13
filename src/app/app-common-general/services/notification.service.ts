@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -7,9 +8,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class NotificationService {
 
+  showLoader = new BehaviorSubject<boolean>(false);
+
   constructor(
     private snackBar: MatSnackBar
   ) { }
+
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, '', {
