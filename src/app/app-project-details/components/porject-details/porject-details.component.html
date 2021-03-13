@@ -1,0 +1,80 @@
+<mat-card class="main-area"
+    fxLayout="column"
+    *ngIf="project">
+    <div class="small-display-title title" 
+        fxFlex="1 1 100%"
+        fxHide.gt-xs>
+        <div *ngTemplateOutlet="projectTitle"></div>
+    </div>
+    <div class="image-info-area"
+        fxLayout="row wrap"
+        fxLayoutAlign="start start"
+        fxLayoutGap.gt-xs="10px">
+        <div class="image-area"
+            fxFlex.gt-sm="350px"
+            fxFlex.sm="250px"
+            fxFlex.lt-sm="100%">
+            <div 
+                [ngStyle.lt-sm]="{
+                    'max-width.px': 200,
+                    'margin': 'auto'
+                }">
+                <p-galleria  class="image" [(value)]="project.images" [circular]="true"
+                    [showThumbnails]="false" [autoPlay]="true" [transitionInterval]="3000">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" [appSetImageHeight]="1" style="width: 100%; display: block;" />
+                    </ng-template>
+                </p-galleria>
+            </div>
+        </div>
+        <div class="info-area"
+            fxFlex.gt-sm="1 1 calc(100% -370px)"
+            fxFlex.sm="1 1 calc(100% -270px)"
+            fxFlex="1 1 100%"
+            fxFlexAlign="start start">
+
+            <div class="title"
+                fxHide.lt-sm>
+                <div *ngTemplateOutlet="projectTitle"></div>
+            </div>   
+            
+            <div class="action-area"
+                [ngStyle.lt-sm]="{
+                    'margin': 'auto',
+                    'margin-top.px': 15,
+                    'margin-bottom.px': 15
+                }">
+                <button class="live-preview"
+                    mat-raised-button
+                    [disabled]="!project.actionAvailable"
+                    (click)="goToLink(project.links.livePreview)">
+                    Live Preview
+                </button>
+                <button class="view-code"
+                    mat-raised-button
+                    [disabled]="!project.actionAvailable"
+                    (click)="goToLink(project.links.github)">
+                    View Code
+                </button>
+            </div>
+
+            <div class="tools-area">
+                <span class="tools-title">Work Tools :</span>
+                <span class="tools-material">{{project.tools}}</span>
+            </div>
+
+            <div class="details-area">
+                <p *ngFor="let detail of project.details">
+                    {{detail}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</mat-card>
+
+
+<ng-template #projectTitle>
+    <p>{{project.title}}</p>
+</ng-template>

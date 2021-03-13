@@ -1,0 +1,119 @@
+<div class="title-area"
+    fxLayout="row wrap"
+    fxLayoutAlign.gt-xs="space-around center">
+    
+    <div class="intro-info"
+        data-aos="fade-right"
+        fxFlex="1 1 100%"
+        fxFlex.gt-xs="300px"
+        fxFlexOrder.lt-sm="2"
+        [ngStyle.lt-sm]="{ 'margin-top.px': 20}">
+        <h1 class="name">Hi, I'm Nawaz Sharif</h1>
+        <h2 class="work">Web App Developer</h2>
+    </div>
+    <div class="my-image-area"
+        data-aos="fade-left"
+        fxFlex="1 1 100%"
+        fxFlex.gt-xs="200px"
+        fxFlex.gt-sm="250px"
+        fxFlex.gt-md="300px"
+        fxFlexOrder.lt-sm="1">
+        <div
+            [ngStyle.lt-sm]="{
+                'max-width.px': 150,
+                'margin': 'auto'
+            }"
+            appSetImageHeight>
+            <!-- <img class="image" src="https://i2.wp.com/fancycrave.com/wp-content/uploads/2019/12/Free-Nature-Pictures-min.jpg?fit=730%2C486&quality=99&ssl=1"> -->
+            <img class="image" [src]="profileImage.url">
+        </div>
+    </div>
+</div>
+<!-- <mat-divider></mat-divider> -->
+<p-divider align="center">
+    <h2 class="work-area-title">Some Of My Work</h2>
+</p-divider>
+
+
+<div fxLayout="row wrap"
+    fxLayout.gt-sm="column"
+    fxLayoutAlign="center center"
+    *ngIf="infoArray && infoArray.length">
+    <ng-container *ngFor="let project of infoArray; let index = index">
+
+        <mat-card class="project-area"
+            data-aos="fade-up"
+            fxFlex="100%"
+            fxFlex.lt-sm="300px"
+            fxLayout="row wrap"
+            fxLayoutAlign.lt-sm="center"
+            fxLayoutGap.gt-xs="10px">
+            <div class="small-display-title project-title"
+                fxFlex="1 1 calc(100% - 10px)"
+                fxHide.gt-xs
+                (click)="navigateTo(project.uid)">
+                {{project.title}}
+            </div>
+            <div class="image-area"
+                fxFlex="1 1 calc(250px - 10px)"
+                fxFlex.lt-sm="100%"
+                fxFlexAlign.lt-sm="center"
+                [fxFlexOrder.gt-xs]="index % 2 === 0 ? 1 : 2"
+                (click)="navigateTo(project.uid)">
+                <p-galleria [(value)]="project.images" [circular]="true"
+                    [showThumbnails]="false" [autoPlay]="true" [transitionInterval]="3000">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" [appSetImageHeight]="0.8" style="width: 100%; height: 100%; display: block;" />
+                    </ng-template>
+                </p-galleria>
+            </div>
+            <div class="info-area"
+                fxFlex="1 1 calc(100% -310px)"
+                fxFlex.lt-sm="100%"
+                fxLayout="column"
+                [fxFlexOrder.gt-xs]="index % 2 === 0 ? 2 : 1">
+
+                <div class="large-display-title project-title"
+                    fxHide.lt-sm
+                    [fxFlexAlign.gt-xs]="index % 2 === 0 ? 'start': 'end'"
+                    (click)="navigateTo(project.uid)">
+                    {{project.title | textShorten: 20}}
+                </div>
+                <div class="action-area"
+                    [fxFlexAlign.gt-xs]="index % 2 === 0 ? 'start': 'end'"
+                    [ngStyle.lt-sm]="{
+                        'margin': 'auto',
+                        'margin-top.px': 10,
+                        'margin-bottom.px': 10
+                    }">
+                    <button class="live-preview"
+                        mat-raised-button
+                        [disabled]="!project.actionAvailable"
+                        (click)="goToLink(project.links.livePreview)">
+                        Live Preview
+                    </button>
+                    <button class="view-code"
+                        mat-raised-button
+                        [disabled]="!project.actionAvailable"
+                        (click)="goToLink(project.links.github)">
+                        View Code
+                    </button>
+                </div>
+                <div class="details-area">
+                    {{project.details[0] | textShorten: 150}}
+                </div>
+            </div>
+        </mat-card>
+    </ng-container>
+
+</div>
+
+<div class="jump-portfolio-button-area">
+    <button class="jump-portfolio-button"
+        mat-button
+        routerLink="/portfolio">
+        Check Out All My Projects
+    </button>
+</div>
+
+

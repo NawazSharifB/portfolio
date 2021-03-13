@@ -1,0 +1,99 @@
+<mat-card class="main-area">
+    <form [formGroup]="projectForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput
+                formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tools Used</mat-label>
+            <input matInput
+                formControlName="tools">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input matInput
+                type="number"
+                formControlName="id">
+        </mat-form-field>
+        <ng-container formGroupName="links">
+            <h3>Links</h3>
+            <mat-form-field appearance="outline">
+                <mat-label>Live Preview Link</mat-label>
+                <input matInput
+                    formControlName="livePreview">
+                    <div matPrefix style="height: 30px; width: 30px; margin-right: 10px">
+                        <img style="width: 100%; height: 100%" src="https://cdn.iconscout.com/icon/free/png-512/view-98-438879.png">
+                    </div>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>GitHub Link</mat-label>
+                <input matInput
+                    formControlName="github">
+                    <div matPrefix style="height: 30px; width: 30px; margin-right: 10px">
+                        <img style="width: 100%; height: 100%" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+                    </div>
+            </mat-form-field>
+        </ng-container>
+        <div class="action-area">
+            <mat-radio-group formControlName="actionAvailable">
+                <label>Will Actions Be Available: </label>
+                <mat-radio-button [value]="true">True</mat-radio-button>
+                <mat-radio-button [value]="false">False</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Details</mat-label>
+            <textarea matInput
+                formControlName="details"
+                placeholder="Write Details In Here"></textarea>
+        </mat-form-field>
+        <div class="image-area"
+            fxLayout="row"
+            fxLayoutGap="20px">
+            <div fxFlex="1 1 cacl(50% - 20px)">
+                <input class="image-input"
+                    #imageInput 
+                    type="file"
+                    (change)="uploadImage($event)">
+                <button class="upload-image-button"
+                    mat-stroked-button
+                    type="button"
+                    (click)="imageInput.click()">
+                    Upload Image
+                </button>
+            </div>
+            <div fxFlex="1 1 calc(50% - 20px)">
+                <form [formGroup]="imageInputForm">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Url</mat-label>
+                        <input matInput formControlName="url" readonly>
+                        <mat-icon matSuffix [cdkCopyToClipboard]="imageUrl.value">content_copy</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>File Name</mat-label>
+                        <input matInput formControlName="fileName" readonly>
+                        <mat-icon matSuffix [cdkCopyToClipboard]="imageFileName.value">content_copy</mat-icon>
+                    </mat-form-field>
+                </form>
+
+                <div cdkDropList class="image-list" (cdkDropListDropped)="drop($event)">
+                    <div class="image-holder" *ngFor="let image of projectImages" cdkDrag>
+                        <div class="image-container">
+                            <img [src]="image.url">
+                        </div>
+                    </div>
+                </div>
+                <button mat-stroked-button  
+                    (click)="updatePorjectImages()">Update Project Images</button>
+
+            </div>
+            
+        </div>
+        <button class="submit-button"
+            mat-stroked-button
+            (click)="submit()">
+            Submit
+        </button>
+    </form>
+</mat-card>

@@ -1,0 +1,46 @@
+.main-area {
+    width: 900px;
+    margin: auto;
+    
+    mat-form-field {
+        width: 100%;
+    }
+
+    .action-area {
+        margin: 10px 0px;
+
+        mat-radio-group {
+            font-weight: 550;
+            mat-radio-button {
+                margin: 0px 15px;
+            }
+        }
+    }
+
+
+    .image-area {
+        .image-input {
+            display: none;
+        }
+
+        .image-list {
+            .image-holder {
+                background: rgb(247, 247, 247);
+                margin: 10px 0px; 
+                .image-container {
+                    height: 100px;
+                    width: 100px;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+mat-icon {
+    cursor: pointer;
+}

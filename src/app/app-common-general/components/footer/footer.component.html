@@ -1,0 +1,29 @@
+<div class="main-area"
+    fxLayout="row wrap"
+    fxLayoutAlign="center">
+    <div class="first-area"
+        fxFlex="300px">
+
+        <p class="email"
+            cdkCopyToClipboard="naw.srif@gmail.com"
+            (click)="dataCopied('Email Number Is Copied To Clipboard')">
+            <span class="title">Email :</span><span class="data">naw.srif@gmail.com</span>
+        </p>
+        <p class="phone"
+            cdkCopyToClipboard="+8801718882927"
+            (click)="dataCopied('Phone Number Is Copied To Clipboard')">
+            <span class="title">Phone :</span><span class="data">+880 17 18 88 29 27</span>
+        </p>
+    </div>
+    <div class="second-area"
+        fxFlex="300px"
+        fxFlexAlign="center">
+
+        <p class="github"
+            cdkCopyToClipboard="https://github.com/NawazSharifB"
+            (click)="dataCopied('GitHub Link Is Copied To Clipboard')">
+            <span class="title">GitHub :</span>
+            <span class="data">https://github.com/NawazSharifB</span>
+        </p>
+    </div>
+</div>

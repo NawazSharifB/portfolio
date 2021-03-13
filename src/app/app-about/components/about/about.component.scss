@@ -1,0 +1,141 @@
+.cc {
+    color: #f0feff;
+}
+
+.details-area {
+    margin-top: 50px;
+    .details {
+        .hello {
+            font-weight: 970;
+        }
+        .para {
+            font-weight: 520;
+            line-height: 30px;
+            text-align: justify;
+        }
+
+        .list {
+            font-weight: 520;
+            margin-top: 30px;
+            li {
+                margin: 10px 0px;
+            }
+        }
+    }
+
+    .image-area {
+        .image-wrapper {
+            max-width: 300px;
+            margin: auto;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.information-area {
+    width: 70%;
+    min-width: 350px;
+    margin: auto;
+    margin-top: 50px;
+
+    .personal-info-area {
+        margin-left: 20px;
+
+        .info-wrapper {
+            height: 30px;
+
+            .title, .dot {
+                font-weight: 550;
+                color:rgb(102, 102, 102)
+            }
+    
+            .info {
+                font-weight: 550;
+                font-size: 16px;
+            }
+            .mat-icon {
+                cursor: pointer;
+            }
+            .copy-that {
+                display: none;
+            }
+        }
+
+    }
+
+    h2 {
+        text-align: center;
+        margin: 20px 0px;
+    }
+
+    .skills-area, .other-skills-area {
+        margin-left: 20px;
+
+        .skills-header {
+            border: 1px solid rgb(242, 242, 242);
+            padding: 15px;
+            background: rgb(247, 247, 247);
+            color: rgb(80, 80, 80);
+            font-weight: 600;
+        }
+    }
+
+    .skills-area {
+        .skill {
+            font-weight: 600
+        }
+
+        .year {
+            font-weight: 550;
+        }
+    }
+
+    .skill-chart-area {
+        margin: 30px 0px;
+    }
+
+    .other-skills-area {
+        .skill {
+            font-weight: 600
+        }
+
+        .tool-name {
+            font-weight: 550;
+        }
+    }
+    
+    .info-wrapper {
+        padding: 7px 10px;
+    }
+    
+    .skills-header {
+        padding: 7px 10px;
+    }
+    
+    .skill-wrapper {
+        padding: 7px 10px;
+    }
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 959px) {
+    .details-area {
+        margin-top: 20px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .information-area {
+        width: 100%;
+    }
+}

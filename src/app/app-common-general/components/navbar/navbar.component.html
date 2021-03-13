@@ -1,0 +1,52 @@
+<mat-toolbar
+  appResizeNavbar
+  fxLayout="row">
+  <div class="logo"
+    (click)="navigateTo('home')">
+    <img src="../../../../assets/logo.jpg">
+  </div>
+  
+  <div class="spacer"fxFlex="1 1 auto"></div>
+
+  <div class="navs-area"
+    fxHide.lt-sm>
+    <button
+      mat-button
+      routerLink="/portfolio"
+      routerLinkActive="active-route">
+      portfolio
+    </button>
+    <button
+      mat-button
+      routerLink="/about"
+      routerLinkActive="active-route">
+      About
+    </button>
+
+    <button
+      mat-button
+      (click)="goToGithub()">
+      <img src="../../../../assets/github.jpg">
+    </button>
+
+  </div>
+  <button 
+    fxHide.gt-xs 
+    type="button" 
+    mat-icon-button
+    [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item
+    routerLink="/portfolio"
+    routerLinkActive="active-route active-route-sm">Portfolio</button>
+  <button mat-menu-item
+    routerLink="/about"
+    routerLinkActive="active-route active-route-sm">About</button>
+  <button mat-menu-item
+    (click)="goToGithub()">GitHub</button>
+</mat-menu>

@@ -1,0 +1,40 @@
+@mixin hovered() {
+    text-decoration: underline;
+    color: rgb(0, 88, 181);
+    cursor: pointer;
+}
+
+.my-projects-title {
+    margin: 400px 0x 20px 0px;
+}
+
+.main-area {
+    .project-info-area {
+        padding: 0px;
+        margin: 15px 0px;
+
+        .image-area {
+
+            &:hover {
+                @include hovered()
+            }
+        }
+
+        .info-area {
+            padding: 10px;
+
+            .title-area {
+                text-align: center;
+
+                &:hover {
+                    @include hovered()
+                }
+
+            }
+
+            .details-area {
+                text-align: justify;
+            }
+        }
+    }
+}

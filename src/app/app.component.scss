@@ -1,0 +1,31 @@
+.navbar-container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 20;
+}
+
+.page-blocker {
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    background: white;
+    z-index: 10;
+    
+    mat-spinner {
+        margin: auto;
+        margin-top: 150px;
+    }
+}
+
+.router-outlet-container {
+    margin-top: 80px;
+    min-height: 100%;
+}
+
+.footer-container {
+    margin-top: 100px;
+}

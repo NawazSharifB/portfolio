@@ -1,0 +1,40 @@
+
+<div class="my-projects-title">
+    <p-divider align="center">
+        <h2 class="work-area-title">My Projects</h2>
+    </p-divider>
+</div>
+
+<div class="main-area"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-around start"
+    fxLayoutAlign.lt-sm="center"
+    fxLayoutGap.gt-sm="20px"
+    *ngIf="projectInfo.length">
+    <ng-container *ngFor="let project of projectInfo">
+        <mat-card class="project-info-area"
+            data-aos="flip-right"
+            fxFlex.gt-sm="285px"
+            fxFlex.lt-md="45%"
+            fxFlex.lt-sm="320px">
+            <div class="image-area"
+                (click)="navigateTo(project.uid)">
+                <p-galleria [(value)]="project.images" [circular]="true"
+                    [showThumbnails]="false" [autoPlay]="true" [transitionInterval]="3000">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" [appSetImageHeight]="0.8" style="width: 100%; display: block;" />
+                    </ng-template>
+                </p-galleria>
+            </div>
+            <div class="info-area">
+                <div class="title-area">
+                    <h2 (click)="navigateTo(project.uid)">{{project.title | textShorten: 20}}</h2>
+                </div>
+                <div class="details-area">
+                    {{project.details[0] | textShorten: 150}}
+                </div>
+            </div>
+
+        </mat-card>
+    </ng-container>
+</div>

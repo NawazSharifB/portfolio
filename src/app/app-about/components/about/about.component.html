@@ -1,0 +1,171 @@
+
+<mat-card class="details-area"
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+    fxLayoutGap.gt-sm="20px">
+    <div class="details"
+        data-aos="fade-right"
+        data-aos-offset= "300"
+        fxFlex="1 1 calc(100% - 320px)"
+        fxFlex.lt-md="1 1 100%"
+        fxFlexOrder.lt-md="2">
+        <p class="hello">Hello,</p>
+        <p class="para">
+            As an enthusiastic and creative technologist with hands-on skills in a wide range of software, tools and programming language, I am well positioned to leverage my abilities and qualifications to thrive as [Company name]’s next Front-end Developer.
+        </p>
+        <p class="para">
+            Over the past 2 years, as a Front-end Developer, I have designed, developed, launched and customized, highly responsive websites and e-commerce solutions using advanced technologies. In addition, I have consistently met client expectations and projects milestones while working effectively in deadline-drive environments. Here are some of my work highlights-
+        </p>
+        <ul class="list">
+            <li>Designed and developed front-end for 180+ webpages using Angular, Javascript. Html5 and CSS/Bootstrap, SCSS.</li>
+            <li>Built 190+ components in Express ( Node.js ) asynchronous methods.</li>
+            <li>Created user-centric e-commerce sites for small business owners using various web technologies.</li>
+        </ul>
+    </div>
+    <div class="image-area"
+        data-aos="fade-left"
+        fxFlex="calc(300px - 20px)"
+        fxFlex.lt-md="200px"
+        fxFlex.lt-sm="100%"
+        fxFlexOrder.lt-md="1">
+        <div class="image-wrapper"
+            [ngStyle.lt-sm]="{'width.px': 150}">
+            <img [src]="image.url" [appSetImageHeight]="1">
+        </div>
+    </div>
+</mat-card>
+
+<mat-card class="information-area"
+    [ngStyle.lt-md]="{'width.%': 100}">
+    <h2>Informations</h2>
+    <div class="personal-info-area"
+        data-aos="zoom-in"
+        data-aos-offset= "300">
+        <div class="info-wrapper"
+            fxLayout="row">
+            <div class="title" fxFlex="100px">Name</div>
+            <div class="dot" fxFlex="15px">:</div>
+            <div class="info" 
+                fxFlex="1 1 auto" 
+                fxFlexAlign="center">
+                {{personalInformation.name}}
+            </div>
+        </div>
+        <div class="info-wrapper"
+            fxLayout="row"
+            appDisplayCopyButton>
+            <div class="title" fxFlex="100px">Email</div>
+            <div class="dot" fxFlex="15px">:</div>
+            <div class="info" 
+                fxFlex="1 1 auto" 
+                fxFlexAlign="center">
+                {{personalInformation.email}}
+            </div>
+            <mat-icon class="mat-icon copy-that" 
+                [cdkCopyToClipboard]="personalInformation.email"
+                pTooltip="Copy Email"
+                (click)="dataCopied('Email is Copied to Clipboard')">
+                content_copy
+            </mat-icon>
+        </div>
+        <div class="info-wrapper"
+            fxLayout="row"
+            appDisplayCopyButton>
+            <div class="title" fxFlex="100px">Phone</div>
+            <div class="dot" fxFlex="15px">:</div>
+            <div class="info" 
+                fxFlex="1 1 auto" 
+                fxFlexAlign="center">
+                {{personalInformation.phone}}
+            </div>
+            <mat-icon class="mat-icon copy-that"
+                [cdkCopyToClipboard]="personalInformation.phone"
+                pTooltip="Copy Phone"
+                (click)="dataCopied('Phone Number is Copied to Clipboard')">
+                content_copy
+            </mat-icon>
+        </div>
+        <div class="info-wrapper"
+            fxLayout="row">
+            <div class="title" fxFlex="100px">Nationality</div>
+            <div class="dot" fxFlex="15px">:</div>
+            <div class="info" 
+                fxFlex="1 1 auto" 
+                fxFlexAlign="center">
+                {{personalInformation.nationality}}
+            </div>
+        </div>
+    </div>
+    <h2 class="skills-title">Skills</h2>
+    <div class="skills-area"
+        data-aos="zoom-in-right"
+        data-aos-offset= "300">
+        <div class="skills-header"
+            fxLayout="row">
+            <div class="title" fxFlex="120px">Skill</div>
+            <div class="dot" fxFlex="15px"> </div>
+            <div class="info" 
+                fxFlex="1 1 auto">
+                Years Of Experience
+            </div>
+        </div>
+        <ng-container  *ngFor="let skill of personalInformation.skills; let skillIndex = index">
+            <div class="skill-wrapper"
+                fxLayout="row"
+                [ngStyle]="{'background': skillIndex % 2 === 0 ? '#fffef0': '#f0feff'}">
+                <div class="skill" fxFlex="120px">{{skill.name | uppercase}}</div>
+                <div class="dot" fxFlex="15px" fxFlexAlign="center">:</div>
+                <div class="year" 
+                    fxFlex="1 1 auto" 
+                    fxFlexAlign="center">
+                    {{skill.year}} years
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="skill-chart-area"
+        data-aos="zoom-in"
+        data-aos-offset= "300"
+        fxLayout="row">
+        <div>
+            <app-skill-chart></app-skill-chart>
+        </div>
+    </div>
+
+    <h2 class="skills-title"> Other Skills</h2>
+    <div class="other-skills-area"
+        data-aos="zoom-in-left"
+        data-aos-offset= "300">
+        
+        <div class="skills-header"
+            fxLayout="row">
+            <div class="title" fxFlex="120px">Skill</div>
+            <div class="dot" fxFlex="15px"> </div>
+            <div class="info" 
+                fxFlex="1 1 auto">
+                Years Of Experience
+            </div>
+        </div>
+        <ng-container  *ngFor="let skill of personalInformation.otherSkills; let otherSkillIndex = index">
+            <div class="skill-wrapper"
+                fxLayout="row"
+                [ngStyle]="{'background': otherSkillIndex % 2 === 0 ? '#fffef0': '#f0feff'}">
+                <div class="skill" 
+                    fxFlex="120px"
+                    fxFlexAlign="center">
+                    {{skill.skill | uppercase}}
+                </div>
+                <div class="dot" 
+                    fxFlex="15px"
+                    fxFlexAlign="center">:</div>
+                <div class="tool-name" fxFlex="1 1 auto" fxFlexAlign="center">
+                    <div class="tool-name"
+                        *ngFor="let tool of skill.tools; let toolIndex = index">
+                        {{toolIndex + 1}}. {{tool}}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</mat-card>

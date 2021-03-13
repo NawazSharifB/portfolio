@@ -1,0 +1,23 @@
+.main-area {
+    padding: 20px 10px;
+    background: #212121;
+
+    p {
+        // text-align: center;
+
+        .title {
+            color: rgb(148, 148, 148);
+            margin-right: 15px;
+        }
+        .data {
+            color: rgb(202, 202, 202);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        
+    }
+
+    .phone, .email, .github {
+        cursor: pointer;
+    }
+}
