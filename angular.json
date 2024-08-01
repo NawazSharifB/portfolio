@@ -126,7 +126,6 @@
       }
     }
   },
-  "defaultProject": "portfolio",
   "cli": {
     "analytics": "bf7b5a5b-d6a3-47b9-9061-73cef1b9eb46",
     "cache": {"enabled": false}
